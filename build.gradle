@@ -1,0 +1,74 @@
+plugins {
+    id 'java'
+    id 'maven-publish'
+    id 'jacoco'
+    id 'com.github.kt3k.coveralls' version '2.9.0'
+}
+
+jacocoTestReport {
+    reports {
+        xml.enabled = true // coveralls plugin depends on xml format report
+        html.enabled = true
+    }
+}
+
+group 'com.github.noonmaru.task'
+version '1.0'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+compileJava.options.encoding = 'UTF-8'
+javadoc.options.encoding = 'UTF-8'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
+
+task sourcesJar(type: Jar) {
+    archiveClassifier = 'sources'
+    from sourceSets.main.java
+}
+
+task javadocJar(type: Jar) {
+    archiveClassifier = 'javadoc'
+    from javadoc.destinationDir
+}
+
+publishing {
+    publications {
+        LibPublication(MavenPublication) {
+            artifactId = 'task'
+            from components.java
+            artifact sourcesJar
+            artifact javadocJar
+            pom {
+                name = 'Noonmaru'
+                description = 'Noonmaru task library'
+                url = 'https://github.com/noonmaru/task'
+                licenses {
+                    license {
+                        name = 'GPL-2.0'
+                        url = 'https://opensource.org/licenses/gpl-2.0.php'
+                    }
+                }
+                developers {
+                    developer {
+                        id = 'noonmaru'
+                        name = 'Noonmaru'
+                        email = 'noonmaru10@gmail.com'
+                        url = 'https://github.com/noonmaru'
+                    }
+                }
+                scm {
+                    connection = 'scm:git:git://github.com/noonmaru/task.git'
+                    developerConnection = 'scm:git:ssh://github.com/noonmaru/task.git'
+                    url = 'https://github.com/noonmaru/task'
+                }
+            }
+        }
+    }
+}
