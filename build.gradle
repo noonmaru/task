@@ -40,7 +40,7 @@ task javadocJar(type: Jar) {
 
 publishing {
     publications {
-        LibPublication(MavenPublication) {
+        TaskPublication(MavenPublication) {
             artifactId = 'task'
             from components.java
             artifact sourcesJar

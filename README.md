@@ -10,9 +10,20 @@
 
 > Random access timer 라이브러리 입니다.
 
-### 1.0
-> * 기능
-> 	```
->   WheelTask - 원형 태스크 Runnable
->   WheelTimer - 원형 태스크
+> * ##### Features
+>   * WheelTask - 원형 태스크 Runnable
+>   * WheelTimer - 원형 태스크
+> * ##### Gradle
+>   ```groovy
+>   allprojects {
+>       repositories {
+>           ...
+>           maven { url 'https://jitpack.io' }
+>       }
+>   }
+>   ```
+>   ```groovy
+>   dependencies {
+>       implementation 'com.github.noonmaru:task:1.0'
+>   }
 >   ```
